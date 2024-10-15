@@ -12,7 +12,7 @@
 
 
 class Gandalf {
-
+    const glamdring = new EspadaElfica() 
     const armas = #{}
     var property vida // Como hacerlo de 0 a 100 ??
     method poder() {
@@ -77,6 +77,8 @@ class EspadaHumana inherits Espada(origen = 15) {
 object baculo {
     method poderio() = 400
 }
+
+
 
 class TomBardi inherits Gandalf {
     override method puedeAtravesar(zona) = true
