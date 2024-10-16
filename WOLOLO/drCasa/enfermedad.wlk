@@ -1,3 +1,6 @@
+import enfermedadAuto.*
+import enfermedadInfec.*
+
 
 
 class Enfermedad { // SuperClase 
@@ -19,6 +22,4 @@ class Enfermedad { // SuperClase
     method afectarA(persona) // Clase abstracta, que no se puede instanciar
                             // Clase abstracta -> enfermedadInfec y enfermedadAuto lo tienen 
                             // al tener este metodo abstracto, no podes crear una enfermedad ya que es abstracta
-
-
 }
