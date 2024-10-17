@@ -1,7 +1,9 @@
 import medico.*
 import enfermedad.*
 import persona.*
- 
+import enfermedadAuto.*
+import enfermedadInfec.*
+
 
 
 describe "dr Casa Temperoada 1" {

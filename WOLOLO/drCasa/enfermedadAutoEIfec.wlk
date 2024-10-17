@@ -2,11 +2,11 @@ import enfermedad.*
 import enfermedadAuto.*
 import enfermedadInfec.*
 
-class EnfermedadAutoEinfec inherits Enfermedad {
+class EnfermedadAutoEinfec {
     const autoinmune
     const infecciosa
 
-    override method afectarA(persona) {
+    method afectarA(persona) {
         autoinmune.afectarA(persona)
         infecciosa.afectarA(persona)
     }
@@ -20,6 +20,8 @@ class EnfermedadAutoEinfec inherits Enfermedad {
     }
      
 }
+
+
 
 
 
