@@ -1,0 +1,40 @@
+import gandalf.*
+import armas.*
+import guerrero.*
+import zonas2.*
+
+describe "Test de Caminos - Parte 3" {
+    // const bosqueF = new BosqueDeFangorn()
+    const edoras = new Edoras()
+    const lebennin = new Lebennin()
+    const estemnet = new Estremnet() // 30 lembas
+    const belfalas = new Belfalas()
+    const camino = new CaminoGondor(zonas = [estemnet])
+    const caminoEz = new CaminoGondor(zonas = [belfalas, edoras])
+    const humana = new Humano(limitadorDePoder = 3)
+    const petes = new Grupo(personas = [mati, facu])
+    const arcoMati = new Arco(largo = 1)
+    const mati = new Guerrero(raza = humana, vida = 80, items = [lemba, lemba])
+    const facu = new Guerrero(raza = humana, vida = 20, items = [lemba, lemba])
+  test "Un grupo no puede pasar por una zona por requerimiento de ítem" {
+    assert.equals(false, petes.puedeAtravesar(estemnet))
+
+  }
+
+  test "Un grupo no puede pasar por una zona por requerimiento de guerrero" {
+    assert.equals(false, petes.puedeAtravesar(lebennin))    
+  }
+
+    test "Un grupo puede pasar por una zona" {
+        assert.equals(true, petes.puedeAtravesar(belfalas))
+    }
+
+    test "Un grupo no puede atravesar un camino" {
+      assert.equals(false, petes.puedeAtravesar(camino))
+    }
+
+    test "Un grupo puede atravesar un camino" {
+        assert.equals(true, petes.puedeAtravesar(caminoEz))
+    }
+
+}

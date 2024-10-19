@@ -3,7 +3,7 @@ class Guerrero {
     const raza
     var property vida
     const armas = []
-    const items = #{}
+    const items = []
 
     method vida() = vida
     method cantItems() = items.size()

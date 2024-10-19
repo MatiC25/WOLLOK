@@ -8,14 +8,23 @@ class Zona {
 class Grupo {
     const personas = []
 
+    method personas() = personas 
+
     method elGrupoTiene(cantItem, item) { 
-        personas.sum({persona => persona.cuantosTiene(item)}) >= cantItem
+        return personas.sum({persona => persona.cuantosTiene(item)}) >= cantItem
     }
 
     method puedeAtravesar(zona) {
         return zona.requerimiento(self)
     }
+
+    method algunoTienePoder(cantPoder) {
+        return personas.any({persona => persona.tienePoder(1500)})
+    }
     
+    method algunoTieneArma() {
+        return personas.any({persona => persona.tieneArma()})
+    }
 }
 
 // class Region {
@@ -34,14 +43,14 @@ class Belfalas inherits Zona {
 class Lebennin inherits Zona {
 
     override method requerimiento(grupo){
-        return grupo.anyOne({persona => persona.tienePoder(1500)})
+        return grupo.algunoTienePoder(1500)
     }
 }
 
 class MinasTirith inherits Zona {
 
-    const itemNecesario
-    const cantItem
+    const itemNecesario = lemba
+    const cantItem = 10
 
     override method requerimiento(grupo) {
         return grupo.elGrupoTiene(cantItem, itemNecesario)
@@ -51,7 +60,7 @@ class MinasTirith inherits Zona {
 class BosqueDeFangorn inherits Zona {
 
     override method requerimiento(grupo){
-        return grupo.anyOne({persona => persona.tieneArma()})
+        return grupo.algunoTieneArma()
     }
 }
 
@@ -59,10 +68,17 @@ class Edoras inherits Zona {
     override method requerimiento(grupo) = true
 }
 
+
+class Item {
+
+}
+
+const lemba = new Item()
+
 class Estremnet inherits Zona {
     
-    const itemNecesario
-    const cantItem
+    const itemNecesario = lemba
+    const cantItem = 30
 
     override method requerimiento(grupo) {
         return grupo.elGrupoTiene(cantItem, itemNecesario)
@@ -70,7 +86,7 @@ class Estremnet inherits Zona {
 }
 
 class CaminoGondor {
-    const zonas = #{}
+    const zonas = []
 
     method requerimiento(grupo) {
         return zonas.all({zona => grupo.puedeAtravesar(zona)})
@@ -81,3 +97,10 @@ class CaminoGondor {
     //     }
 
 }
+
+const bosqueF = new BosqueDeFangorn()
+const edoras = new Edoras()
+const estemnet = new Estremnet()
+const belfalas = new Belfalas()
+
+// const camino = new CaminoGondor(zonas = [bosqueF, edoras, estemnet, belfalas])
