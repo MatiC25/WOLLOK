@@ -4,6 +4,7 @@ class Guerrero {
     var property vida
     const armas = []
     const items = []
+    var property estaEnCombate = true
 
     method vida() = vida
     method cantItems() = items.size()
@@ -21,6 +22,14 @@ class Guerrero {
 
     method disminuirVida(unPocoDeVida) {
         vida -= unPocoDeVida
+        self.comprobacionVida()
+    }
+
+    method comprobacionVida() {
+        if(vida < 0){
+            vida = 0
+            estaEnCombate = false
+        }
     }
 
     method aumentarVida(unPocoDeVida) {
@@ -28,10 +37,24 @@ class Guerrero {
     }
     method poderio() = raza.poderio(self)
 
-    method cuantosTiene(item) = items.count({objeto => objeto == item})
+    method cuantosTiene(item) = items.occurrencesOf(item)
+
     method tienePoder(cantPoder) = self.poderio() > cantPoder
-    method tieneArmas(cantArmas) = armas.size() > cantArmas
+    method tieneArmas(cantArmas) = armas.size() > cantArmas 
     method tieneVida(cantVida) = vida > cantVida 
+
+    method ganarItems(item, cantidad) {
+        cantidad.times(items.add(item))
+    }
+
+    method perderItems(item, cantidad) {
+        cantidad.times(items.remove(item))
+    }
+
+    method cantVida(porcentaje) {
+        return vida * porcentaje / 100
+    }
+
 
     
 }
